@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Motion Verify — motion-sensor human check</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="wrap">
+    <header class="head">
+      <div class="mark" aria-hidden="true"></div>
+      <h1>Motion Verify</h1>
+      <p class="sub">Prove you're holding a phone, not scripting one.</p>
+    </header>
+
+    <section id="panel-checking" class="card">
+      <p class="status">Checking device sensors…</p>
+    </section>
+
+    <section id="panel-insecure" class="card hidden">
+      <p class="status status--warn">Motion sensors are blocked on this connection.</p>
+      <p class="hint">
+        Your browser only allows motion sensor access over a secure (HTTPS)
+        connection, or on <code>localhost</code>. This page is currently
+        loaded over plain HTTP, so the browser hides the sensor APIs even
+        though your phone supports them. Reload this page using an
+        <strong>https://</strong> link (e.g. via a tunnel like ngrok) to continue.
+      </p>
+    </section>
+
+    <section id="panel-unsupported" class="card hidden">
+      <p class="status status--warn">Motion sensor not detected.</p>
+      <p class="hint">This page only works on a phone with motion sensors. Please open it on your phone instead.</p>
+    </section>
+
+    <section id="panel-permission" class="card hidden">
+      <p class="status">Motion access needs your permission.</p>
+      <button id="btn-permission" class="btn btn--primary">Enable motion sensors</button>
+    </section>
+
+    <section id="panel-start" class="card hidden">
+      <p class="status">Instead of a traditional CAPTCHA, you'll be asked to perform a simple physical movement with your phone.</p>
+      <button id="btn-start-verification" class="btn btn--primary">Start Verification</button>
+    </section>
+
+    <section id="panel-calibrating" class="card hidden">
+      <p class="status">Calibrating… hold your phone steady.</p>
+    </section>
+
+    <section id="panel-challenge" class="card hidden">
+      <p class="eyebrow">Your challenge</p>
+      <h2 id="challenge-instruction">—</h2>
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+          <circle id="ring-progress" class="ring-progress" cx="60" cy="60" r="52"></circle>
+        </svg>
+        <div id="ring-label" class="ring-label">Ready</div>
+      </div>
+      <button id="btn-start" class="btn btn--primary">Start challenge</button>
+      <p id="live-readout" class="readout hidden"></p>
+    </section>
+
+    <section id="panel-result" class="card hidden">
+      <p id="result-icon" class="result-icon" aria-hidden="true"></p>
+      <h2 id="result-title">—</h2>
+      <p id="result-reason" class="hint">—</p>
+      <div class="meta-row">
+        <div class="meta"><span class="meta-label">Confidence</span><span id="meta-confidence" class="meta-value">—</span></div>
+        <div class="meta"><span class="meta-label">Time</span><span id="meta-time" class="meta-value">—</span></div>
+      </div>
+      <button id="btn-retry" class="btn btn--primary">Try again</button>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
