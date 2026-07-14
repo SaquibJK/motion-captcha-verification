@@ -26,7 +26,7 @@ The backend analyzes the recorded sensor data and returns a verification result 
 # System Overview
 
 <p align="center">
-<img src="docs/images/system-overview.png" width="100%">
+<img src="docs/images/system_overview.png" width="100%">
 </p>
 
 The verification process consists of the following stages:
